@@ -9,26 +9,59 @@ function Login() {
 
   const onLoginClick = async () => {
 
-   let response = await fetch ("https://senai-gpt-api.azurewebsites.net/login", {
+    let response = await fetch("https://senai-gpt-api.azurewebsites.net/login", {
 
       headers: {
 
-       "Content-Type": "application/json" 
+        "Content-Type": "application/json"
 
       },
 
       method: "POST", //metodo que envia dados
-      body: JSON.stringify ({
+      body: JSON.stringify({
 
-    email: email,
-    password: password
+        email: email,
+        password: password
 
-      }) 
+      })
 
-   });
+    });
 
-   console.log(response);
+    console.log(response);
 
+    if (response.ok == true) {
+
+
+      alert("login realizado com sucesso!!")
+
+      console.log(response)
+      let json = await response.json();
+
+      let token = json.accessToken;
+
+      console.log("token: " + token);
+
+      localStorage.setItem("token", token)
+
+      window.location.href = "/chat";
+
+      
+
+    } else {
+
+      if (response.status == 401) {
+
+        alert("Credenciais incorretas. tente novamente.")
+
+
+      } else {
+
+        alert("erro inesperado aconteceu, caso persista contate os administradores")
+
+
+      }
+
+      }
 
 
   }
