@@ -1,0 +1,59 @@
+.left-panel {
+
+    height: 100vh;
+    width: 20vw;
+    background-color: rgb(80, 73, 168);
+}
+
+.central-panel {
+
+    height: 100vh;
+    width: 80vw;
+    background-color: rgb(255, 255, 255);
+   
+}
+
+
+
+.container {
+
+
+    display: flex;
+
+}
+
+.container1 {
+
+    display: flex;
+
+
+}
+
+.top button {
+
+    margin-top: 10px;
+    display: flex;
+    /* Usa o modelo Flexbox para organizar os elementos */
+    flex-direction: row;
+    /* Organiza os elementos em linhas */
+    align-items: center;
+    /* Centraliza verticalmente */
+}
+
+.btn-chat img{
+
+    margin-right: 15px;
+}
+
+.inpt-container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 185vh; /* Altura da janela */
+    margin: 0;
+    background-color: #778bff;
+   
+}
+
+
