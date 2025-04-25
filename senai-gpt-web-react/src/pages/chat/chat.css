@@ -2,58 +2,162 @@
 
     height: 100vh;
     width: 20vw;
-    background-color: rgb(80, 73, 168);
+    border-right: 1px solid #ccc;
+
 }
 
 .central-panel {
 
     height: 100vh;
     width: 80vw;
-    background-color: rgb(255, 255, 255);
-   
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
 }
 
+.central-panel .chat-logo {
+    
+    margin-top: 25vh;
 
+}
+
+.central-panel .dicas-container {
+
+    display: flex;
+    max-width: 50vw;
+    margin-top: 20px;
+
+}
+
+.central-panel .dicas-item {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+
+}
+
+.central-panel .dicas-item h2 {
+
+    margin-bottom: 20px;
+
+    display: flex; /* Usa o modelo Flexbox para organizar os elementos */
+    flex-direction: column; /* Organiza os elementos em colunas */
+    align-items: center; /* Cetraliza horizontalmente */
+
+}
+
+.central-panel .dicas-item p {
+
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #F7F9FB;
+    border-radius: 8px;
+
+}
 
 .container {
 
-
     display: flex;
 
 }
 
-.container1 {
+.top {
 
     display: flex;
-
-
-}
-
-.top button {
-
-    margin-top: 10px;
-    display: flex;
-    /* Usa o modelo Flexbox para organizar os elementos */
-    flex-direction: row;
-    /* Organiza os elementos em linhas */
+    flex-direction: column;
     align-items: center;
-    /* Centraliza verticalmente */
+    padding: 20px;
+    height: 70vh;
+
 }
 
-.btn-chat img{
+.top .btn-new-chat {
+
+    width: 100%;
+    background-color: black;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 10px;
+
+}
+
+.btn-chat {
+
+    width: 100%;
+    background-color: transparent;
+    padding: 10px;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+
+    display: flex; /* Usa o modelo Flexbox para organizar os elementos */
+    flex-direction: row; /* Organiza os elementos em linhas */
+    align-items: center; /* Centraliza verticalmente */
+
+}
+
+.btn-chat img {
 
     margin-right: 15px;
+
 }
 
-.inpt-container{
+.bottom {
+
+    border-top: 1px solid #ccc;
+    padding: 20px;
+
+}
+
+.input-container-1 {
+
+    margin-top: auto;
+    margin-bottom: 40px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 185vh; /* Altura da janela */
-    margin: 0;
-    background-color: #778bff;
-   
+
+    border: none;
+    background-color: #F7F9FB;
+
+    border-radius: 16px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
+.input-container-1 input {
 
+    border: none;
+    padding: 20px;
+    background-color: transparent;
+    width: 40vw;
+
+}
+
+.input-container-2 {
+
+    margin-top: auto;
+    margin-bottom: 40px;
+
+}
+
+.input-container-2 input {
+
+    padding: 20px;
+    border: none;
+    background-color: #F7F9FB;
+    border-radius: 16px;
+    width: 40vw;
+
+}

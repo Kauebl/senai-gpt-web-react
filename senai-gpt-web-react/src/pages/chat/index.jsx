@@ -1,25 +1,24 @@
-
-import "./chat.css"
+import "./chat.css";
+import logo from "../../assets/imgs/Chat.png";
+import example from "../../assets/imgs/example.svg";
+import { useEffect, useState } from "react";
 
 function Chat() {
 
-    const [chats, setChats] = useSate([]);
-
+    const [chats, setChats] = useState([]);
+    const [chatSelecionado, setChatSelecionado] = useState(null);
     useEffect(() => {
 
+        // Executada toda vez que a tela abre.
         getChats();
 
 
     }, []);
 
     const getChats = async () => {
-
-        let response = await fetch("https://senai-gpt-api.azurewebsites.net/", {
-
-
-
-            header: {
-
+        // Arrow Function
+        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+            headers: {
                 "Authorization": "Bearer " + localStorage.getItem("meuToken")
             }
         });
@@ -28,79 +27,146 @@ function Chat() {
 
         if (response.ok == true) {
 
-
-            let json = await response.json();
+            let json = await response.json(); // Pegue as informações dos chats.
 
             setChats(json);
+
         } else {
 
+            if (response.status == 401) {
 
-            if (response.status == 401)
+                alert("Token inválido. Faça login novamente.");
+                localStorage.clear();
+                window.location.href = "/login";
 
-                alert("Token invalido. faca login novamente.");
-            window.location.hrep = "/login";
+            }
 
         }
+
+    }
+    const onlogOutCLick = () => {
+
+        localStorage.clear();
+        window.location.href = "/login"
+
     }
 
+    const clickChat = (chat) => {
+
+        setChatSelecionado(chat);
+        console.log(chat)
+    }
     return (
         <>
-            <div className="container1">
+            <div className="container">
 
+                <header className="left-panel">
 
+                    <div className="top">
 
-                <div className="coluns">
-                    <header className="left-panel">
+                        <button className="btn-new-chat">+ New chat</button>
 
-                        <div className="top">
+                        {chats.map(chat => (
+                            <button className="btn-chat" onClick={() => clickChat(chat)}>
+                                <img src="../assets/imgs/chat.svg" alt="ícone de chat." />
+                                {chat.chatTitle}
+                            </button>
+                        ))}
 
-
-                            <button>+ New chat</button>
-
-                            {chats.map(chat => (
-
-                                <button className="btn-chat">
-                                    <img src="../assets/imgs/chat.svg" alt="icone de chat" srcset="" />
-                                    Ai Chat Tool Ethics
-                                </button>
-
-
-                            ))}
-
-                        </div>
-
-                        <div className="bottom">
-
-                        </div>
-
-
-
-
-
-                    </header>
-                </div>
-
-                <main className="central-panel">
-                    <img src="../assets/imgs/Chat (1).svg" alt="" />
-
-                    <div className="inpt-container">
-                        <img src="../assets/imgs/Microphone.svg" alt="microfone" />
-                        <img src="../assets/imgs/photos.svg" alt="photos" />
-                        <input placeholder="Type a message" type="text" />
-                        <img src="../assets/imgs/enviar.svg" alt="enviar" />
                     </div>
 
+                    <div className="bottom">
+
+                        <button className="btn-chat">Clear conversations</button>
+                        <button className="btn-chat">Light mode</button>
+                        <button className="btn-chat">My account</button>
+                        <button className="btn-chat">Updates & FAQ</button>
+                        <button className="btn-chat" onClick={() => onlogOutCLick()}>Log out</button>
+
+                    </div>
+
+                </header>
+
+                <main className="central-panel">
+
+                    {chatSelecionado == null && (
+
+
+                        <>
+
+                            <div className="chat-logo">
+                                <img src={logo} alt="Logo do SenaiGPT." />
+
+                            </div>
+
+                            <div className="dicas-container">
+
+                                <div className="dicas-item">
+
+                                    <h2>
+                                        <img src={example} alt="Example icon." />
+                                        Examples
+                                    </h2>
+
+                                    <p>Explique como um computador quântico funciona.</p>
+                                    <p>Explique como um computador quântico funciona.</p>
+                                    <p>Explique como um computador quântico funciona.</p>
+
+                                </div>
+
+                                <div className="dicas-item">
+
+                                    <h2>
+                                        <img src={example} alt="Example icon." />
+                                        Examples
+                                    </h2>
+
+                                    <p>Explique como um computador quântico funciona.</p>
+                                    <p>Explique como um computador quântico funciona.</p>
+                                    <p>Explique como um computador quântico funciona.</p>
+
+                                </div>
+
+                                <div className="dicas-item">
+
+                                    <h2>
+                                        <img src={example} alt="Example icon." />
+                                        Examples
+                                    </h2>
+
+                                    <p>Explique como um computador quântico funciona.</p>
+                                    <p>Explique como um computador quântico funciona.</p>
+                                    <p>Explique como um computador quântico funciona.</p>
+
+                                </div>
+
+                            </div>
+
+                        </>
+
+
+                    )}
 
 
 
+
+                    <div className="input-container-1">
+
+                        <img src="../assets/imgs/mic.svg" alt="Microphone." />
+                        <img src="../assets/imgs/img.svg" alt="Image." />
+
+                        <input placeholder="Type a message." type="text" />
+
+                        <img src="../assets/imgs/send.svg" alt="Send." />
+
+                    </div>
 
                 </main>
+
             </div>
-
-
-
         </>
     )
-}
 
-export default Chat
+};
+
+export default Chat;
